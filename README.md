@@ -1,0 +1,4 @@
+FAQBox
+======
+
+Bukkit plugin "FAQBox"
