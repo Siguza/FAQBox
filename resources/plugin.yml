@@ -1,0 +1,18 @@
+name: FAQBox
+main: net.drgnome.faqbox.FAQPlugin
+version: 1.0.0
+author: Siguza
+commands:
+  faq:
+    description: FAQBox
+    usage: /faq
+permissions:
+  faqbox.manage:
+    default: op
+    description: "Allows you to manage messages"
+  faqbox.send:
+    default: op
+    description: "Allows you to send messages to players"
+  faqbox.update:
+    default: op
+    description: "Notifies you of new FAQBox versions"
