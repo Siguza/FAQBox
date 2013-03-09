@@ -155,6 +155,10 @@ public class FAQPlugin extends JavaPlugin implements Runnable, Listener
                 {
                     sendMessage(sender, "This message ID exist already.", ChatColor.RED);
                 }
+                else if(args[1].contains(","))
+                {
+                    sendMessage(sender, "Message IDs must not contain commas.", ChatColor.RED);
+                }
                 else
                 {
                     _messages.put(args[1], Util.implode(" ", Util.cut(args, 2)));
