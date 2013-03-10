@@ -223,6 +223,7 @@ public class FAQPlugin extends JavaPlugin implements Runnable, Listener
                 else
                 {
                     ArrayList<String> list = new ArrayList<String>();
+                    ArrayList<String> validmsgs = new ArrayList<String>();
                     for(String key : args[args.length - 1].split(","))
                     {
                         if(!_messages.containsKey(key))
@@ -231,6 +232,7 @@ public class FAQPlugin extends JavaPlugin implements Runnable, Listener
                         }
                         else
                         {
+                            validmsgs.add(key);
                             list.add(_messages.get(key).replace("&", _color).replace(_color + _color, "&"));
                         }
                     }
@@ -252,7 +254,19 @@ public class FAQPlugin extends JavaPlugin implements Runnable, Listener
                             }
                         }
                     }
-                    String info = "[FAQBox] " + sender.getName() + " sent messages " + Util.implode(", ", Util.cut(msgs, 0, msgs.length - 1)) + " and " + msgs[msgs.length - 1] + " to players " + Util.implode(", ", Util.cut(args, 1, args.length - 2)) + " and " + args[args.length - 2] + ".";
+                    String[] infomsg = validmsgs.toArray(new String[0]);
+                    String[] infoplayers = playernames.toArray(new String[0]);
+                    String info = "[FAQBox] " + sender.getName() + " sent message";
+                    if(infomsg.length > 1)
+                    {
+                        info += "s " + Util.implode(", ", Util.cut(infomsg, 0, infomsg.length - 1)) + " and ";
+                    }
+                    info += infomsg[infomsg.length - 1] + " to ";
+                    if(infoplayers.length > 1)
+                    {
+                        info += "players " + Util.implode(", ", Util.cut(infoplayers, 0, infoplayers.length - 1)) + " and ";
+                    }
+                    info += infoplayers[infoplayers.length - 1] + ".";
                     for(Player player : Bukkit.getOnlinePlayers())
                     {
                         if(player.hasPermission("faqbox.notify") && !player.getName().equals(sender.getName()))
