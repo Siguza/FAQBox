@@ -261,6 +261,10 @@ public class FAQPlugin extends JavaPlugin implements Runnable, Listener
                     {
                         info += "s " + Util.implode(", ", Util.cut(infomsg, 0, infomsg.length - 1)) + " and ";
                     }
+                    else
+                    {
+                        info += " ";
+                    }
                     info += infomsg[infomsg.length - 1] + " to ";
                     if(infoplayers.length > 1)
                     {
