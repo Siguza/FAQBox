@@ -235,6 +235,7 @@ public class FAQPlugin extends JavaPlugin implements Runnable, Listener
                         }
                     }
                     String[] msgs = list.toArray(new String[0]);
+                    ArrayList<String> playernames = new ArrayList<String>();
                     for(int i = 1; i < args.length - 1; i++)
                     {
                         Player player = Bukkit.getPlayer(args[i]);
@@ -244,10 +245,19 @@ public class FAQPlugin extends JavaPlugin implements Runnable, Listener
                         }
                         else
                         {
+                            playernames.add(player.getName());
                             for(String msg : msgs)
                             {
                                 sendMessage(player, msg.replace("%player", player.getName()));
                             }
+                        }
+                    }
+                    String info = "[FAQBox] " + sender.getName() + " sent messages " + Util.implode(", ", Util.cut(msgs, 0, msgs.length - 1)) + " and " + msgs[msgs.length - 1] + " to players " + Util.implode(", ", Util.cut(args, 1, args.length - 2)) + " and " + args[args.length - 2] + ".";
+                    for(Player player : Bukkit.getOnlinePlayers())
+                    {
+                        if(player.hasPermission("faqbox.notify") && !player.getName().equals(sender.getName()))
+                        {
+                            sendMessage(player, info, ChatColor.YELLOW);
                         }
                     }
                     sendMessage(sender, "Messages sent.", ChatColor.GREEN);

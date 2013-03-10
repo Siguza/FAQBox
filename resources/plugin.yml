@@ -13,6 +13,9 @@ permissions:
   faqbox.send:
     default: op
     description: "Allows you to send messages to players"
+  faqbox.notify:
+    default: op
+    description: "You're notified if someone sends a message via FAQBox"
   faqbox.update:
     default: op
     description: "Notifies you of new FAQBox versions"

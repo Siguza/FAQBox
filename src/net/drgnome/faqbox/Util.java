@@ -79,8 +79,13 @@ public class Util
     
     public static <T> T[] cut(T[] objects, int start)
     {
-        T[] array = createGenericArray((Class<T>)objects.getClass().getComponentType(), objects.length - start);
-        for(int i = start; i < objects.length; i++)
+        return cut(objects, start, objects.length);
+    }
+    
+    public static <T> T[] cut(T[] objects, int start, int offset)
+    {
+        T[] array = createGenericArray((Class<T>)objects.getClass().getComponentType(), offset - start);
+        for(int i = start; i < offset; i++)
         {
             array[i - start] = objects[i];
         }
